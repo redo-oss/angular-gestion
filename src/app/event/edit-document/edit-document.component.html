@@ -1,0 +1,147 @@
+<div class="container">
+    <div class="row">
+        <div class="col-lg-12 mb-3">
+            <div class="close">
+                <i class="fa fa-times" (click)="modal.close('closed')"></i>
+            </div>
+            <form [formGroup]="formGroup" (ngSubmit)="edit()">
+                <div class="form-row mt-3">
+
+                    <div class="col">
+                        <input type="text" class="form-control" placeholder="Titre" formControlName="titre">
+                    </div>
+                </div>
+                <div class="form-row mt-4">
+                    <div class="col">
+                        <select class="form-select form-control" formControlName="type_zone" [selectedIndex]="">
+                            <option disabled value="null">select zone type</option>
+                            <option [value]="'Mono'">Mono zone</option>
+                            <option [value]="'Multi'">Multi zones </option>
+                        </select>
+                    </div>
+                    <div class="col">
+                        <select class="form-select form-control" formControlName="etat">
+                            <option disabled value="null">select etat</option>
+                            <option [value]="'inactif'">inactif</option>
+                            <option [value]="'actif'">actif</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-row mt-3">
+                    <div class="col">
+                        <input class="form-control" placeholder="date Debut : yyyy-mm-dd" ngbDatepicker
+                            #db="ngbDatepicker" (click)="db.toggle()" formControlName="date_debut">
+                    </div>
+                    <div class="col">
+                        <input type="text" class="form-control" placeholder="date Fin: yyyy-mm-dd" ngbDatepicker
+                            #df="ngbDatepicker" (click)="df.toggle()" formControlName="date_fin">
+                    </div>
+                </div>
+                <div class="form-row mt-3">
+
+                    <div class="col">
+                        <input type="text" class="form-control" placeholder="Réference d'objet"
+                            formControlName="ref_objet">
+                    </div>
+                    <div class="col">
+                        <select class="form-select form-control" formControlName="type_objet">
+                            <option disabled value="null">select file type</option>
+                            <option [value]="'article'">Article</option>
+                            <option [value]="'document'">Document</option>
+                            <option [value]="'event'">Event</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-row mt-3" *ngIf="formGroup.value.type_objet=='event'">
+                    <div class="col" *ngIf="formGroup.value.type_zone=='Multi'">
+                        <div class="card-body dropzone-custom p-0">
+                            <div class="dropzone dropzone-primary" [dropzone]="config3" (error)="onUploadError($event)"
+                                (success)="onUploadImageSuccess($event)">
+                                <div class="dz-message needsclick">
+                                    <i class="fa fa-cloud-upload"></i>
+                                    <h4 class="mb-0 f-w-600" id="upload_image">upload Image.</h4>
+                                </div>
+                            </div>
+                        </div>
+                        <span class="help-block cv_file-error"></span>
+
+                    </div>
+                    <div class="col"  *ngIf="formGroup.value.type_zone=='Mono'">
+                        <div class="card-body dropzone-custom p-0">
+                            <div class="dropzone dropzone-primary" [dropzone]="config1" (error)="onUploadError($event)"
+                                (success)="onUploadImageSuccess($event)">
+                                <div class="dz-message needsclick">
+                                    <i class="fa fa-cloud-upload"></i>
+                                    <h4 class="mb-0 f-w-600" id="upload_image">upload Image.</h4>
+                                </div>
+                            </div>
+                        </div>
+                        <span class="help-block cv_file-error"></span>
+                        
+                    </div>
+                    
+
+                </div>
+                <div class="form-row mt-3" *ngIf="formGroup.value.type_objet=='article'">
+                    <div class="col" *ngIf="formGroup.value.type_zone=='Multi'">
+                        <div class="card-body dropzone-custom p-0">
+                            <div class="dropzone dropzone-primary" [dropzone]="config4" (error)="onUploadError($event)"
+                                (success)="onUploadImageSuccess($event)">
+                                <div class="dz-message needsclick">
+                                    <i class="fa fa-cloud-upload"></i>
+                                    <h4 class="mb-0 f-w-600" id="upload_image">upload Article.</h4>
+                                </div>
+                            </div>
+                        </div>
+                        <span class="help-block cv_file-error"></span>
+                    </div> 
+                    <div class="col" *ngIf="formGroup.value.type_zone=='Mono'">
+                        <div class="card-body dropzone-custom p-0">
+                            <div class="dropzone dropzone-primary" [dropzone]="config2" (error)="onUploadError($event)"
+                                (success)="onUploadImageSuccess($event)">
+                                <div class="dz-message needsclick">
+                                    <i class="fa fa-cloud-upload"></i>
+                                    <h4 class="mb-0 f-w-600" id="upload_image">upload Article.</h4>
+                                </div>
+                            </div>
+                        </div>
+                        <span class="help-block cv_file-error"></span>
+                    </div>
+                </div>
+                <div class="form-row mt-3" *ngIf=" formGroup.value.type_objet=='document'">
+                    <div class="col" *ngIf="formGroup.value.type_zone=='Mono'">
+                        <div class="card-body dropzone-custom p-0">
+                            <div class="dropzone dropzone-primary" [dropzone]="config2" (error)="onUploadError($event)"
+                                (success)="onUploadImageSuccess($event)">
+                                <div class="dz-message needsclick">
+                                    <i class="fa fa-cloud-upload"></i>
+                                    <h4 class="mb-0 f-w-600" id="upload_image">upload Document.</h4>
+                                </div>
+                            </div>
+                        </div>
+                        <span class="help-block cv_file-error"></span>
+                    </div>
+                    <div class="col" *ngIf="formGroup.value.type_zone=='Multi'">
+                        <div class="card-body dropzone-custom p-0">
+                            <div class="dropzone dropzone-primary" [dropzone]="config4" (error)="onUploadError($event)"
+                                (success)="onUploadImageSuccess($event)">
+                                <div class="dz-message needsclick">
+                                    <i class="fa fa-cloud-upload"></i>
+                                    <h4 class="mb-0 f-w-600" id="upload_image">upload Document.</h4>
+                                </div>
+                            </div>
+                        </div>
+                        <span class="help-block cv_file-error"></span>
+                    </div>
+                </div>
+                <div class="form-row mt-3">
+                    <div class="col">
+                        <button type="submit" class="btn btn-primary" (click)="modal.close('close')">edit</button>
+                    </div>
+                </div>
+
+            </form>
+        </div>
+    </div>
+</div>

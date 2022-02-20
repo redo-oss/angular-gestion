@@ -1,0 +1,54 @@
+.close{
+    display: flex;
+    width: 100%;
+    flex-direction: row;
+    justify-content: end;
+    align-items: center;
+    margin-bottom: 15px;
+    height: 20px;
+    i{
+        position: absolute;
+        top:2px;
+        right: 5px;
+        cursor: pointer;
+        font-size: 25px;
+        color: rgb(134, 133, 133);
+    }
+}
+ // Media
+    .dropzone
+    {
+        margin-right: auto;
+        margin-left: auto;
+        padding: 50px;
+        border: 2px dashed #007bff;
+        border-radius: 15px;
+        min-height: 150px;
+    }
+
+    .dropzone .dz-preview .dz-image {
+        border-radius: 5px;
+        border: none;
+    }
+    .dropzone  i {
+        font-size: 50px;
+        color: #007bff;
+        text-align: center;
+    }
+    .card{
+        .card-body {
+            z-index: 0;
+        }
+    }
+ .dropzone-custom {
+  .dropzone {
+    text-align: center;
+    .fa-cloud-upload {
+      font-size: 50px;
+      color: #007bff;
+    }
+    h4 {
+      font-size: 18px;
+    }
+  }
+}
